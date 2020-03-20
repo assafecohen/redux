@@ -7,7 +7,7 @@ const todos = (state = initalState, action) => {
     case 'ADD_TODO':
       return {
         ...state,
-        data: [...state.data, action, { id: Math.random(), text: action.text }]
+        data: [...state.data, { id: Math.random(), text: action.text }]
       };
     case 'DELTE_TODO':
       return {};
