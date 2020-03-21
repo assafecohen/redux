@@ -1,31 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
 import { Col, Row, Form } from 'react-bootstrap';
 
 const StyledButton = styled(Button)`
-  max-width: 100%;
+  width: 120px;
 `;
-const StyledFormLabel = styled(Form.Label)`
-  max-width: 100%;
-`;
-
 const AddTodoForm = () => {
-  return (
-    <Form fluid='md'>
-      <Form.Group controlId='exampleForm.ControlInput1'>
-        <Row className='justify-content-md-center'>
-          <Col sm={2}>
-            <StyledFormLabel column sm={4}>
-              Add Todo
-            </StyledFormLabel>
-          </Col>
+  const [taskInput, setTaskInput] = useState('');
 
-          <Col sm={6}>
-            <Form.Control type='text' placeholder='Add your next task...' />
+  const dispatch = useDispatch();
+  const handleAddTodo = e => {
+    e.preventDefault();
+    if (taskInput.length) {
+      dispatch({ type: 'ADD_TODO', data: taskInput });
+      setTaskInput('');
+    }
+  };
+
+  return (
+    <Form>
+      <Form.Group controlId='exampleForm.ControlInput1'>
+        <Row className='justify-content-center'>
+          <Col lg='6'>
+            <Form.Control
+              type='text'
+              value={taskInput}
+              onChange={e => {
+                setTaskInput(e.target.value);
+              }}
+              placeholder='Add your next task...'
+            />
           </Col>
-          <Col sm={2}>
-            <StyledButton type='submit' class='btn btn-primary mb-2'>
+          <Col lg='2'>
+            <StyledButton
+              onClick={e => handleAddTodo(e)}
+              className='btn btn-primary mb-2'
+            >
               Add
             </StyledButton>
           </Col>
@@ -34,5 +46,4 @@ const AddTodoForm = () => {
     </Form>
   );
 };
-
 export default AddTodoForm;

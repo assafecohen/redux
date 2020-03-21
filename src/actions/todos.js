@@ -1,7 +1,7 @@
 const ADD_TODO = 'ADD_TODO';
-export const addTodo = text => ({
+export const addTodo = data => ({
   type: ADD_TODO,
-  text
+  data
 });
 
 const DELETE_TODO = 'DELETE_TODO';

@@ -1,5 +1,8 @@
 const initalState = {
-  data: []
+  todos: [
+    { data: 'Clean my room', isCompleted: 'false', id: '1' },
+    { data: 'Clean my room2', isCompleted: 'false', id: '2' }
+  ]
 };
 
 const todos = (state = initalState, action) => {
@@ -7,7 +10,10 @@ const todos = (state = initalState, action) => {
     case 'ADD_TODO':
       return {
         ...state,
-        data: [...state.data, { id: Math.random(), text: action.text }]
+        todos: [
+          ...state.todos,
+          { id: Math.random(), data: action.data, isCompleted: false }
+        ]
       };
     case 'DELTE_TODO':
       return {};

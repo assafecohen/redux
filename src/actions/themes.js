@@ -1,5 +1,5 @@
 const LIGHT_THEME = 'LIGHT_THEME';
-export const addTodo = themeColor => ({
+export const changeTheme = themeColor => ({
   type: LIGHT_THEME,
   themeColor
 });

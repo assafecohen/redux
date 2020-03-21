@@ -1,48 +1,38 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './index.css';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AddTodoForm from './components/AddTodoForm';
-
+import Todos from './components/Todos/Todos';
 import { useSelector, useDispatch } from 'react-redux';
 
-const StyledContainer = styled(Container)`
-  min-height: 100%;
-  overflow: hidden;
-`;
 const StyledTitleRow = styled(Row)`
-  margin-bottom: 40px;
+  margin: 40px 0;
 `;
 function App() {
   const dispatch = useDispatch();
   const theme = useSelector(state => state.theme.themeColor);
   return (
-    <StyledContainer fluid='lg'>
-      <StyledTitleRow>
-        <Col align='center'>
-          <h1>TodoApp - REDUX & HOOKS</h1>
-        </Col>
-      </StyledTitleRow>
-      <Row>
-        <Col align='center'>
-          <AddTodoForm />
-        </Col>
-      </Row>
-    </StyledContainer>
+    <Fragment>
+      <Container>
+        <StyledTitleRow>
+          <Col align='center'>
+            <h1>TodoApp - REDUX & HOOKS</h1>
+          </Col>
+        </StyledTitleRow>
+        <Row>
+          <Col>
+            <AddTodoForm />
+          </Col>
+        </Row>
+      </Container>
+      <Container style={{ maxWidth: '900px' }}>
+        <Todos />
+      </Container>
+    </Fragment>
   );
 }
 
 export default App;
-
-{
-  /* <div className='App'>
-<h1>Counter {theme}</h1>
-<button
-  onClick={() => dispatch({ type: 'LIGHT_THEME', themeColor: 'light' })}
->
-  INCERMENT
-</button>
-</div> */
-}
