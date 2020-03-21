@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components';
 import { Col, Row, Form } from 'react-bootstrap';
-
+import * as actions from '../actions';
 const StyledButton = styled(Button)`
   width: 120px;
 `;
@@ -14,7 +14,7 @@ const AddTodoForm = () => {
   const handleAddTodo = e => {
     e.preventDefault();
     if (taskInput.length) {
-      dispatch({ type: 'ADD_TODO', data: taskInput });
+      dispatch(actions.addTodo(taskInput));
       setTaskInput('');
     }
   };

@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const StyledTitleRow = styled(Row)`
   margin: 40px 0;
+  color: #fff;
 `;
 function App() {
   const dispatch = useDispatch();
