@@ -1,18 +1,18 @@
 import {
   ADD_TODO,
   DELETE_TODO,
-  OPEN_EDIT_MODAL
+  OPEN_EDIT_MODAL,
 } from './../actions/actionsTypes';
 const initalState = {
   todos: [
     { data: 'Clean my room', isCompleted: 'false', id: '1' },
-    { data: 'Clean my room2', isCompleted: 'false', id: '2' }
+    { data: 'Clean my room2', isCompleted: 'false', id: '2' },
   ],
   modal: {
     id: '',
     showModal: false,
-    modalTitle: ''
-  }
+    modalTitle: '',
+  },
 };
 
 const todos = (state = initalState, action) => {
@@ -21,25 +21,26 @@ const todos = (state = initalState, action) => {
       return {
         todos: [
           ...state.todos,
-          { id: Math.random(), data: action.data, isCompleted: false }
-        ]
+          { id: Math.random(), data: action.data, isCompleted: false },
+        ],
+        modal: state.modal,
       };
     case DELETE_TODO:
-      const todos = state.todos.filter(todo => {
+      const todos = state.todos.filter((todo) => {
         return todo.id !== action.id;
       });
       return {
-        todos
+        todos,
+        modal: state.modal,
       };
     case OPEN_EDIT_MODAL:
-      console.log(action);
       return {
         ...state,
         modal: {
           id: action.id,
           showModal: action.showModal,
-          modalTitle: action.modalTitle
-        }
+          modalTitle: action.modalTitle,
+        },
       };
     default:
       return state;

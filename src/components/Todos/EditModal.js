@@ -4,9 +4,8 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const EditModal = () => {
-  const modal = useSelector(state => state.todos.modal);
+  const modal = useSelector((state) => state.todos.modal);
 
-  // onHide={handleClose}
   return (
     <Modal show={modal.showModal}>
       <Modal.Header closeButton>

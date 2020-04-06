@@ -6,7 +6,6 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import EditModal from './EditModal';
 
 const StyledCard = styled(Card)`
   padding: 10px;
@@ -28,7 +27,7 @@ const Todo = ({ todo }) => {
                 actions.openEditModal({
                   id: todo.id,
                   showModal: true,
-                  modalTitle: todo.data
+                  modalTitle: todo.data,
                 })
               )
             }
@@ -45,7 +44,6 @@ const Todo = ({ todo }) => {
           </Button>
         </Col>
       </Row>
-      <EditModal />
     </Fragment>
   );
 };

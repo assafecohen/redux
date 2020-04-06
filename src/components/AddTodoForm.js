@@ -11,7 +11,7 @@ const AddTodoForm = () => {
   const [taskInput, setTaskInput] = useState('');
 
   const dispatch = useDispatch();
-  const handleAddTodo = e => {
+  const handleAddTodo = (e) => {
     e.preventDefault();
     if (taskInput.length) {
       dispatch(actions.addTodo(taskInput));
@@ -27,7 +27,7 @@ const AddTodoForm = () => {
             <Form.Control
               type='text'
               value={taskInput}
-              onChange={e => {
+              onChange={(e) => {
                 setTaskInput(e.target.value);
               }}
               placeholder='Add your next task...'
@@ -35,7 +35,7 @@ const AddTodoForm = () => {
           </Col>
           <Col lg='2'>
             <StyledButton
-              onClick={e => handleAddTodo(e)}
+              onClick={(e) => handleAddTodo(e)}
               className='btn btn-primary mb-2'
             >
               Add
