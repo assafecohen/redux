@@ -1,1 +1,7 @@
-export { addTodo, deleteTodo, openEditModal } from './todos';
+export {
+  addTodo,
+  deleteTodo,
+  openEditModal,
+  closeEditModal,
+  editTodo,
+} from './todos';

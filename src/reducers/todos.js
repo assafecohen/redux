@@ -2,6 +2,8 @@ import {
   ADD_TODO,
   DELETE_TODO,
   OPEN_EDIT_MODAL,
+  CLOSE_EDIT_MODAL,
+  EDIT_TODO,
 } from './../actions/actionsTypes';
 const initalState = {
   todos: [
@@ -9,9 +11,7 @@ const initalState = {
     { data: 'Clean my room2', isCompleted: 'false', id: '2' },
   ],
   modal: {
-    id: '',
     showModal: false,
-    modalTitle: '',
   },
 };
 
@@ -40,6 +40,26 @@ const todos = (state = initalState, action) => {
           id: action.id,
           showModal: action.showModal,
           modalTitle: action.modalTitle,
+        },
+      };
+    case CLOSE_EDIT_MODAL:
+      return {
+        ...state,
+        modal: {
+          showModal: action.showModal,
+        },
+      };
+    case EDIT_TODO:
+      const updatedTodos = state.todos.map((todo) => {
+        if (action.id === todo.id) {
+          todo.data = action.data;
+        }
+        return todo;
+      });
+      return {
+        todos: updatedTodos,
+        modal: {
+          showModal: action.showModal,
         },
       };
     default:
