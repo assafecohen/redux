@@ -4,4 +4,6 @@ export {
   openEditModal,
   closeEditModal,
   editTodo,
+  openDeleteModal,
+  closeDeleteModal,
 } from './todos';

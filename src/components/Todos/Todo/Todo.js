@@ -38,7 +38,15 @@ const Todo = ({ todo }) => {
         <Col sm={2}>
           <Button
             variant='danger'
-            onClick={() => dispatch(actions.deleteTodo(todo.id))}
+            onClick={() =>
+              dispatch(
+                actions.openDeleteModal({
+                  id: todo.id,
+                  showModal: true,
+                  modalTitle: todo.data,
+                })
+              )
+            }
           >
             Delete
           </Button>

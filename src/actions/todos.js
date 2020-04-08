@@ -4,6 +4,8 @@ import {
   OPEN_EDIT_MODAL,
   CLOSE_EDIT_MODAL,
   EDIT_TODO,
+  CLOSE_DELETE_MODAL,
+  OPEN_DELETE_MODAL,
 } from './actionsTypes';
 export const addTodo = (data) => ({
   type: ADD_TODO,
@@ -23,6 +25,16 @@ export const openEditModal = (modalData) => ({
 });
 export const closeEditModal = (modalData) => ({
   type: CLOSE_EDIT_MODAL,
+  showModal: modalData.showModal,
+});
+export const openDeleteModal = (modalData) => ({
+  type: OPEN_DELETE_MODAL,
+  id: modalData.id,
+  showModal: modalData.showModal,
+  modalTitle: modalData.modalTitle,
+});
+export const closeDeleteModal = (modalData) => ({
+  type: CLOSE_DELETE_MODAL,
   showModal: modalData.showModal,
 });
 export const editTodo = (modalData) => ({

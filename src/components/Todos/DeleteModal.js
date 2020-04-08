@@ -6,52 +6,39 @@ import Form from 'react-bootstrap/Form';
 
 import Button from 'react-bootstrap/Button';
 
-const EditModal = () => {
-  const editModal = useSelector((state) => state.todos.editModal);
+const DeleteModal = () => {
+  const deleteModal = useSelector((state) => state.todos.deleteModal);
   const dispatch = useDispatch();
 
   const handleShow = () => {
     dispatch(
-      actions.closeEditModal({
+      actions.closeDeleteModal({
         showModal: false,
       })
     );
   };
-  const handleEditTask = () => {
+  const handleDeleteTodo = () => {
+    dispatch(actions.deleteTodo(deleteModal.id));
     dispatch(
-      actions.editTodo({
-        data: taskInput,
-        id: editModal.id,
+      actions.closeDeleteModal({
         showModal: false,
       })
     );
   };
-
-  const [taskInput, setTaskInput] = useState(editModal);
-  useEffect(() => {
-    setTaskInput(editModal.modalTitle || '');
-  }, [editModal]);
 
   return (
-    <Modal show={editModal.showModal} onHide={handleShow}>
+    <Modal show={deleteModal.showModal} onHide={handleShow}>
       <Modal.Header closeButton>
         <Modal.Title>Clicking "Save Changes" reversed</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form.Group>
-          <Form.Control
-            type='text'
-            placeholder='insert you task...'
-            value={taskInput}
-            onChange={(e) => setTaskInput(e.target.value)}
-          />
-        </Form.Group>
+        <Form.Group></Form.Group>
       </Modal.Body>
       <Modal.Footer>
         <Button variant='secondary' onClick={handleShow}>
           Close
         </Button>
-        <Button variant='primary' onClick={handleEditTask}>
+        <Button variant='primary' onClick={handleDeleteTodo}>
           Save Changes
         </Button>
       </Modal.Footer>
@@ -59,4 +46,4 @@ const EditModal = () => {
   );
 };
 
-export default EditModal;
+export default DeleteModal;

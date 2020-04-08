@@ -3,6 +3,8 @@ import {
   DELETE_TODO,
   OPEN_EDIT_MODAL,
   CLOSE_EDIT_MODAL,
+  OPEN_DELETE_MODAL,
+  CLOSE_DELETE_MODAL,
   EDIT_TODO,
 } from './../actions/actionsTypes';
 const initalState = {
@@ -10,7 +12,10 @@ const initalState = {
     { data: 'Clean my room', isCompleted: 'false', id: '1' },
     { data: 'Clean my room2', isCompleted: 'false', id: '2' },
   ],
-  modal: {
+  editModal: {
+    showModal: false,
+  },
+  deleteModal: {
     showModal: false,
   },
 };
@@ -23,20 +28,24 @@ const todos = (state = initalState, action) => {
           ...state.todos,
           { id: Math.random(), data: action.data, isCompleted: false },
         ],
-        modal: state.modal,
+        editModal: state.editModal,
+        deleteModal: { showModal: false },
       };
     case DELETE_TODO:
       const todos = state.todos.filter((todo) => {
+        console.log(action.id, ' acton id');
         return todo.id !== action.id;
       });
+      console.log(todos);
       return {
         todos,
-        modal: state.modal,
+        editModal: state.editModal,
+        deleteModal: { showModal: false },
       };
     case OPEN_EDIT_MODAL:
       return {
         ...state,
-        modal: {
+        editModal: {
           id: action.id,
           showModal: action.showModal,
           modalTitle: action.modalTitle,
@@ -45,7 +54,23 @@ const todos = (state = initalState, action) => {
     case CLOSE_EDIT_MODAL:
       return {
         ...state,
-        modal: {
+        editModal: {
+          showModal: action.showModal,
+        },
+      };
+    case OPEN_DELETE_MODAL:
+      return {
+        ...state,
+        deleteModal: {
+          id: action.id,
+          showModal: action.showModal,
+          modalTitle: action.modalTitle,
+        },
+      };
+    case CLOSE_DELETE_MODAL:
+      return {
+        ...state,
+        deleteModal: {
           showModal: action.showModal,
         },
       };
@@ -58,7 +83,7 @@ const todos = (state = initalState, action) => {
       });
       return {
         todos: updatedTodos,
-        modal: {
+        deleteModal: {
           showModal: action.showModal,
         },
       };
